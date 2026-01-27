@@ -1,0 +1,15 @@
+.context {
+	display: none;
+}
+
+.context.visible {
+	display: block;
+}
+
+.hint {
+    display: none;
+}
+
+.hint.visible {
+    display: block;
+}
