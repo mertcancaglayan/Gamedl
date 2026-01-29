@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { WORD_DATABASE, type WORDTYPE } from "../../data/data"
 import "../wordContextGame/WordContextGame.css"
-import { Lightbulb, RotateCcw, Tally2, Trophy, TypeOutline, Zap } from 'lucide-react';
+import { Lightbulb, RotateCcw, Tally2, Trophy, Zap } from 'lucide-react';
 
 function WordContextGame() {
     const [word, setWord] = useState<WORDTYPE>()
@@ -55,6 +55,16 @@ function WordContextGame() {
         setGuesses(prev => [...prev, guess]);
     }
 
+    function handleRetry() {
+        setWord(getRandomWord())
+        setCurrentContextIndex(1)
+        setIsHintVisible(false)
+        setGuess("")
+        setGuesses([])
+        setIsGameOver(false)
+        setIsGameWon(false)
+    }
+
     return (
         <section className="context-game-section">
             <div className="title-area">
@@ -62,8 +72,12 @@ function WordContextGame() {
                 <p>Guess the word from its different meanings</p>
             </div>
             <div className="score-area">
-                <div className="score-area-tile"><span>Score</span><span>0</span></div>
-                <div className="score-area-tile"><span>Streak</span><span>0</span></div>
+                <div className="score-area-tile"><div className="icon-box"><Trophy></Trophy></div>
+                    <div> <span>Score</span><span>0</span></div>
+                </div>
+                <div className="score-area-tile"><div className="icon-box"><Zap></Zap></div>
+                    <div><span>Streak</span><span>0</span></div>
+                </div>
             </div>
 
             <div className="game-area">
@@ -86,10 +100,16 @@ function WordContextGame() {
                 </div>
 
                 {isGameOver ? <div className="display-message">
-                    {isGameWon ? <div className="win-game">
-                        🎉 Correct!
-                    </div> :
-                        <div className="lost-game">❌ The word was: {word?.word}</div>
+                    {isGameWon ? <div>
+                        <div className="win-game">
+                            🎉 Correct!
+                        </div>
+                        <button className="btn btn-primary" id="retry-button" onClick={handleRetry}><RotateCcw /> Next Word</button></div>
+                        :
+                        <div>
+                            <div className="lost-game">❌ The word was: {word?.word}</div>
+                            <button className="btn btn-primary" id="retry-button" onClick={handleRetry}><RotateCcw /> Next Word</button>
+                        </div>
                     }
                 </div> : <div className="guess-area">
                     <label htmlFor="guess-input">Your guess</label>
