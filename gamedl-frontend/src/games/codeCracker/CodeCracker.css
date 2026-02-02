@@ -1,0 +1,27 @@
+.correct-letter {
+    color: green;
+}
+
+.input-area {
+    display: flex;
+}
+
+.letter-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid black;
+}
+
+.letter-area.correct {
+    background-color: green;
+}
+
+.letter-area label {
+	font-size: 40px;
+}
+.letter-area input {
+	width: 40px;
+}
+

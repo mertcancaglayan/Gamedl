@@ -1,9 +1,10 @@
-import WordContextGame from "../games/wordContextGame/WordContextGame"
+import CodeCracker from "../games/codeCracker/CodeCracker"
 
 function Home() {
     return (
         <main>
-            <WordContextGame></WordContextGame>
+            {/* <WordContextGame></WordContextGame> */}
+            <CodeCracker></CodeCracker>
         </main>
     )
 }
