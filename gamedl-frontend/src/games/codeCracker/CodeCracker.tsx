@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCipher } from "./hooks/useCipher";
 import "./CodeCracker.css";
+import Header from "./components/header/Header";
 
 type Entry = {
     letter: string;
@@ -17,10 +18,12 @@ const shuffleEntries = (entries: Entry[]) => {
 };
 
 function CodeCracker() {
-    const { mapping, currentQuoteLetters } = useCipher();
+    const { mapping, currentQuoteLetters, setRefresh, currentQuote } = useCipher();
     const [entries, setEntries] = useState<Entry[]>([]);
     const [guesses, setGuesses] = useState<Record<string, GuessState>>({});
-
+    const [isGameEnd, setIsGameEnd] = useState<boolean>(false)
+    const [totalLetter, setTotalLetters] = useState<number>(0)
+    const [numberOfGuess, setNumberOfGuess] = useState<number>(0)
 
     useEffect(() => {
         if (!mapping) return;
@@ -30,13 +33,19 @@ function CodeCracker() {
         );
 
         setEntries(shuffleEntries(newEntries));
-    }, [mapping, currentQuoteLetters]);
+        setTotalLetters(newEntries.length)
+    }, [mapping]);
 
     function handleSubmit(value: string, letter: string) {
-        console.log(value, letter);
+        if (isGameEnd) return
 
         const upperCaseValue = value.toUpperCase()
         const isCorrect: boolean = upperCaseValue === letter
+
+        console.log(letter, value)
+
+        setNumberOfGuess((prev) => prev + 1)
+
 
         setGuesses((prev) => ({
             ...prev,
@@ -45,19 +54,45 @@ function CodeCracker() {
                 isCorrect,
             },
         }));
+
+    }
+
+    useEffect(() => {
+        if (entries.length === 0) return;
+
+        const allSolved = entries.every(
+            ({ letter }) => guesses[letter]?.isCorrect === true
+        );
+
+        if (allSolved) {
+            setIsGameEnd(true);
+        }
+    }, [guesses, entries]);
+
+    function newPuzzle() {
+        setIsGameEnd(false);
+        setGuesses({});
+        setEntries([]);
+        setRefresh(true);
     }
 
     return (
-        <section>
-            <div className="quote">
-                {currentQuoteLetters.map((letter, i) => {
-                    const guess = guesses[letter]
-                    return (
-                        <span key={i} className={
-                            guess?.isCorrect === true ? "correct-letter" : ""
-                        }>{letter}</span>
-                    )
-                })}
+        <section className="code-cracker">
+            <Header></Header>
+
+            <p>Total Letter: {totalLetter}</p>
+            <p>Number of Guesses: {numberOfGuess}</p>
+            <div className="cipher-display">
+                <div className="cipher-text">
+                    {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
+                        const guess = guesses[current.letter]
+                        return (
+                            <span key={i} className={
+                                guess?.isCorrect === true ? "correct-letter" : ""
+                            }>{current.symbol}</span>
+                        )
+                    })}
+                </div>
             </div>
 
             <div className="input-area">
@@ -87,10 +122,21 @@ function CodeCracker() {
                                         );
                                     }
                                 }}
+
+                                disabled={guess?.isCorrect === true}
                             />
                         </div>)
                 })}
             </div>
+
+            <div className="controls">
+                <button className="btn-secondary" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
+            </div>
+
+            {isGameEnd && <div><p>GameEnded</p>
+                <p>sentence:  {currentQuote?.text}</p>
+                <p>autoger : {currentQuote?.author}</p>
+            </div>}
         </section>
     );
 }

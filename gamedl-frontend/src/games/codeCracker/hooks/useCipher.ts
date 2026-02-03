@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { quotes, symbols, type QUOTE } from "../../../data/quotes";
 
+interface CurrentQuoteLetter {
+	letter: string;
+	symbol: string;
+}
+
 const shuffleSymbols = (): string[] => {
 	return [...symbols].sort(() => Math.random() - 0.5);
 };
@@ -9,16 +14,17 @@ const getRandomQuote = (): QUOTE => {
 	return quotes[Math.floor(Math.random() * quotes.length)];
 };
 
-
 export const useCipher = () => {
-	const [currentQuoteLetters, setCurrentQuoteLetters] = useState<string[]>([]);
+	const [currentQuoteLetters, setCurrentQuoteLetters] = useState<CurrentQuoteLetter[]>();
 	const [mapping, setMapping] = useState<Record<string, string>>({});
+	const [refreshed, setRefresh] = useState<boolean>(false);
+	const [currentQuote, setCurrentQuote] = useState<QUOTE>();
 
 	useEffect(() => {
 		const quote = getRandomQuote();
+		setCurrentQuote(quote);
 
 		const displayChars = Array.from(quote.text.toUpperCase());
-		setCurrentQuoteLetters(displayChars);
 
 		const uniqueAlphaChars = Array.from(
 			new Set(
@@ -36,8 +42,16 @@ export const useCipher = () => {
 			newMapping[letter] = shuffledSymbols[index];
 		});
 
-		setMapping(newMapping);
-	}, []);
+		const lettersWithSymbols: CurrentQuoteLetter[] = displayChars.map((char) => ({
+			letter: char,
+			symbol: newMapping[char] ?? char,
+		}));
 
-	return { currentQuoteLetters, mapping };
+		setCurrentQuoteLetters(lettersWithSymbols);
+
+		setRefresh(false);
+		setMapping(newMapping);
+	}, [refreshed]);
+
+	return { currentQuoteLetters, mapping, setRefresh, currentQuote };
 };

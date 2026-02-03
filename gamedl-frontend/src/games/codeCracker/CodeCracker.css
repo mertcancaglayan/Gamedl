@@ -1,9 +1,30 @@
+section.code-cracker {
+	--primary-dark: #0a0e14;
+	--secondary-dark: #1a1f2e;
+	--accent-amber: #ff9500;
+	--accent-red: #ff3b30;
+	--accent-green: #30d158;
+	--text-primary: #e8e6e3;
+	--text-secondary: #8a8a8d;
+	--glow-amber: rgba(255, 149, 0, 0.4);
+	--paper: #f4f1e8;
+
+	font-family: "Courier Prime", monospace;
+	background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+	color: var(--text-primary);
+	min-height: 100vh;
+	overflow-x: hidden;
+	position: relative;
+	width: 100%;
+	padding: var(--spacing-2xl);
+}
+
 .correct-letter {
-    color: green;
+	color: green;
 }
 
 .input-area {
-    display: flex;
+	display: flex;
 }
 
 .letter-area {
@@ -15,7 +36,7 @@
 }
 
 .letter-area.correct {
-    background-color: green;
+	background-color: green;
 }
 
 .letter-area label {
@@ -25,3 +46,24 @@
 	width: 40px;
 }
 
+.cipher-display {
+	background: var(--paper);
+	color: #2c2c2e;
+	padding: 2.5rem;
+	margin-bottom: 2rem;
+	border-radius: 8px;
+	box-shadow:
+		0 10px 40px rgba(0, 0, 0, 0.5),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	position: relative;
+	animation: fadeIn 1s ease-out 0.5s both;
+}
+.cipher-text {
+	font-size: 1.4rem;
+	line-height: 1.8;
+	font-weight: bold;
+	letter-spacing: 0.05em;
+	position: relative;
+	z-index: 1;
+	word-wrap: break-word;
+}
