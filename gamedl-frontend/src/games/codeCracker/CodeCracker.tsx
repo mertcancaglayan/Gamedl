@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useCipher } from "./hooks/useCipher";
 import "./CodeCracker.css";
 import Header from "./components/header/Header";
 import GameInfo from "./components/gameInfo/GameInfo";
+import { useCipherContext } from "./hooks/useCipherContext";
 
 type Entry = {
     letter: string;
     symbol: string;
-};
-
-type GuessState = {
-    value: string;
-    isCorrect: boolean | null;
 };
 
 const shuffleEntries = (entries: Entry[]) => {
@@ -19,11 +15,13 @@ const shuffleEntries = (entries: Entry[]) => {
 };
 
 function CodeCracker() {
+    const contextValue = useCipherContext()
+
+    const { guesses, setGuesses } = contextValue
+
     const { mapping, currentQuoteLetters, setRefresh, currentQuote } = useCipher();
     const [entries, setEntries] = useState<Entry[]>([]);
-    const [guesses, setGuesses] = useState<Record<string, GuessState>>({});
     const [isGameEnd, setIsGameEnd] = useState<boolean>(false)
-    const [totalLetter, setTotalLetters] = useState<number>(0)
     const [numberOfGuess, setNumberOfGuess] = useState<number>(0)
 
     useEffect(() => {
@@ -34,7 +32,6 @@ function CodeCracker() {
         );
 
         setEntries(shuffleEntries(newEntries));
-        setTotalLetters(newEntries.length)
     }, [mapping]);
 
     function handleSubmit(value: string, letter: string) {
@@ -81,7 +78,7 @@ function CodeCracker() {
         <section className="code-cracker">
             <div className="code-cracker-container">
                 <Header></Header>
-                <GameInfo totalLetter={totalLetter} numberOfGuess={numberOfGuess}></GameInfo>
+                <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess}></GameInfo>
                 <div className="cipher-display">
                     <div className="cipher-text">
                         {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
@@ -115,6 +112,14 @@ function CodeCracker() {
                                         id={letter}
                                         data-letter={letter}
                                         maxLength={1}
+                                        value={guesses[letter]?.value || ""}
+                                        onChange={((e) => {
+                                            const input = e.target as HTMLInputElement;
+                                            handleSubmit(
+                                                input.value,
+                                                input.dataset.letter!
+                                            );
+                                        })}
                                         onKeyDown={(e) => {
                                             if (e.key === "Enter") {
                                                 const input = e.target as HTMLInputElement;

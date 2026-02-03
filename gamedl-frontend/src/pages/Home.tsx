@@ -1,10 +1,13 @@
 import CodeCracker from "../games/codeCracker/CodeCracker"
+import { CipherProvider } from "../games/codeCracker/components/context/CipherContext"
 
 function Home() {
     return (
         <main>
             {/* <WordContextGame></WordContextGame> */}
-            <CodeCracker></CodeCracker>
+            <CipherProvider>
+                <CodeCracker></CodeCracker>
+            </CipherProvider>
         </main>
     )
 }
