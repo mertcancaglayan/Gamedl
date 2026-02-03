@@ -1,9 +1,19 @@
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
-import Home from './pages/Home'
+import { appRoutes } from './AppRoutes'
 
 function App() {
   return (
-      <Home></Home>
+    <BrowserRouter>
+      <Routes>
+        {appRoutes.map((item) => {
+          return (
+            <Route path={item.path} element={item.element}></Route>
+          )
+        })}
+      </Routes>
+
+    </BrowserRouter >
   )
 }
 

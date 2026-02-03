@@ -3,12 +3,8 @@ import { useCipherContext } from "../../hooks/useCipherContext";
 
 function CipherDisplay() {
     const contextValue = useCipherContext()
-
     const { guesses } = contextValue;
-
     const { currentQuoteLetters, } = useCipher();
-
-
 
     return (
         <div className="cipher-display">

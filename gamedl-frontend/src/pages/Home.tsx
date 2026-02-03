@@ -1,14 +1,19 @@
-import CodeCracker from "../games/codeCracker/CodeCracker"
-import { CipherProvider } from "../games/codeCracker/components/context/CipherContext"
+import { useNavigate } from "react-router"
+import { Fragment } from "react/jsx-runtime"
 
 function Home() {
+    const navigate = useNavigate()
+
+
     return (
-        <main>
-            {/* <WordContextGame></WordContextGame> */}
-            <CipherProvider>
-                <CodeCracker></CodeCracker>
-            </CipherProvider>
-        </main>
+        <Fragment>
+            <button onClick={() => navigate("/codecracker")}>
+                Start CodeCracker
+            </button>
+            <button onClick={() => navigate("/wordcontextgame")}>
+                Start Word Context
+            </button>
+        </Fragment>
     )
 }
 

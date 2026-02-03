@@ -5,17 +5,31 @@ export type GuessState = {
 	isCorrect: boolean | null;
 };
 
+export type Entry = {
+	letter: string;
+	symbol: string;
+};
+
 interface CipherContextType {
 	guesses: Record<string, GuessState>;
 	setGuesses: React.Dispatch<React.SetStateAction<Record<string, GuessState>>>;
+	entries: Entry[];
+	setEntries: React.Dispatch<React.SetStateAction<Entry[]>>;
+	isGameEnd: boolean;
+	setIsGameEnd: React.Dispatch<React.SetStateAction<boolean>>;
+	numberOfGuess: number;
+	setNumberOfGuess: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CipherContext = createContext<CipherContextType | undefined>(undefined);
 
 export function CipherProvider({ children }: { children: React.ReactNode }) {
 	const [guesses, setGuesses] = useState<Record<string, GuessState>>({});
+	const [entries, setEntries] = useState<Entry[]>([]);
+	const [isGameEnd, setIsGameEnd] = useState<boolean>(false);
+	const [numberOfGuess, setNumberOfGuess] = useState<number>(0);
 
-	const contextValue = { guesses, setGuesses };
+	const contextValue = { guesses, setGuesses, entries, setEntries, isGameEnd, setIsGameEnd, numberOfGuess, setNumberOfGuess };
 
 	return (
 		<CipherContext.Provider value={contextValue}>
