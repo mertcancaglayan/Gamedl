@@ -42,10 +42,19 @@ export const useCipher = () => {
 			newMapping[letter] = shuffledSymbols[index];
 		});
 
-		const lettersWithSymbols: CurrentQuoteLetter[] = displayChars.map((char) => ({
-			letter: char,
-			symbol: newMapping[char] ?? char,
-		}));
+		const lettersWithSymbols: CurrentQuoteLetter[] = displayChars.map((char) => {
+			if (char === " ") {
+				return {
+					letter: " ",
+					symbol: "\u00A0", 
+				};
+			}
+
+			return {
+				letter: char,
+				symbol: newMapping[char] ?? char,
+			};
+		});
 
 		setCurrentQuoteLetters(lettersWithSymbols);
 

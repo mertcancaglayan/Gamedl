@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCipher } from "./hooks/useCipher";
 import "./CodeCracker.css";
 import Header from "./components/header/Header";
+import GameInfo from "./components/gameInfo/GameInfo";
 
 type Entry = {
     letter: string;
@@ -78,65 +79,72 @@ function CodeCracker() {
 
     return (
         <section className="code-cracker">
-            <Header></Header>
-
-            <p>Total Letter: {totalLetter}</p>
-            <p>Number of Guesses: {numberOfGuess}</p>
-            <div className="cipher-display">
-                <div className="cipher-text">
-                    {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
-                        const guess = guesses[current.letter]
-                        return (
-                            <span key={i} className={
-                                guess?.isCorrect === true ? "correct-letter" : ""
-                            }>{current.symbol}</span>
-                        )
-                    })}
+            <div className="code-cracker-container">
+                <Header></Header>
+                <GameInfo totalLetter={totalLetter} numberOfGuess={numberOfGuess}></GameInfo>
+                <div className="cipher-display">
+                    <div className="cipher-text">
+                        {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
+                            const guess = guesses[current.letter]
+                            return (
+                                <span key={i} className={`cipher-symbol ${guess?.isCorrect === true ? "correct-letter" : ""}`
+                                }>{current.symbol}</span>
+                            )
+                        })}
+                    </div>
                 </div>
+
+
+                <div className="mapping-grid">
+                    <div className="letter-grid">
+                        {entries.map(({ letter, symbol }) => {
+                            const guess = guesses[letter]
+
+                            return (
+                                <div key={letter} className={`letter-mapping ${guess?.isCorrect === true
+                                    ? "correct"
+                                    : guess?.isCorrect === false
+                                        ? "incorrect"
+                                        : ""
+                                    }`}>
+                                    <label className="symbol" htmlFor={letter}>{symbol}</label>
+
+                                    <input
+                                        className="letter-input"
+                                        type="text"
+                                        id={letter}
+                                        data-letter={letter}
+                                        maxLength={1}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") {
+                                                const input = e.target as HTMLInputElement;
+                                                handleSubmit(
+                                                    input.value,
+                                                    input.dataset.letter!
+                                                );
+                                            }
+                                        }}
+
+                                        disabled={guess?.isCorrect === true}
+                                    />
+                                </div>)
+                        })}
+                    </div>
+
+                </div>
+
+
+
+                <div className="controls">
+                    <button className="btn-secondary" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
+                </div>
+
+                {isGameEnd && <div><p>GameEnded</p>
+                    <p>sentence:  {currentQuote?.text}</p>
+                    <p>autoger : {currentQuote?.author}</p>
+                </div>}
             </div>
 
-            <div className="input-area">
-                {entries.map(({ letter, symbol }) => {
-                    const guess = guesses[letter]
-
-                    return (
-                        <div key={letter} className={`letter-area ${guess?.isCorrect === true
-                            ? "correct"
-                            : guess?.isCorrect === false
-                                ? "incorrect"
-                                : ""
-                            }`}>
-                            <label htmlFor={letter}>{symbol}</label>
-
-                            <input
-                                type="text"
-                                id={letter}
-                                data-letter={letter}
-                                maxLength={1}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                        const input = e.target as HTMLInputElement;
-                                        handleSubmit(
-                                            input.value,
-                                            input.dataset.letter!
-                                        );
-                                    }
-                                }}
-
-                                disabled={guess?.isCorrect === true}
-                            />
-                        </div>)
-                })}
-            </div>
-
-            <div className="controls">
-                <button className="btn-secondary" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
-            </div>
-
-            {isGameEnd && <div><p>GameEnded</p>
-                <p>sentence:  {currentQuote?.text}</p>
-                <p>autoger : {currentQuote?.author}</p>
-            </div>}
         </section>
     );
 }
