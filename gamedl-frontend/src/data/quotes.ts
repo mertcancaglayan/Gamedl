@@ -1,46 +1,216 @@
 export type QUOTE = {
 	text: string;
 	author: string;
+	difficulty: string;
 };
 
-export const quotes : QUOTE[] = [
-	{ text: "To be or not to be that is the question", author: "William Shakespeare, Hamlet" },
-	{ text: "It was the best of times it was the worst of times", author: "Charles Dickens, A Tale of Two Cities" },
-	{ text: "Call me Ishmael", author: "Herman Melville, Moby Dick" },
-	{ text: "In the beginning God created the heaven and the earth", author: "The Bible, Genesis" },
+export const quotes: QUOTE[] = [
+	{ text: "Life is what happens when you are making other plans", author: "John Lennon", difficulty: "Easy" },
+	{ text: "The way to get started is to quit talking and begin doing", author: "Walt Disney", difficulty: "Easy" },
+	{ text: "Believe you can and you are halfway there", author: "Theodore Roosevelt", difficulty: "Easy" },
+	{ text: "Spread love everywhere you go", author: "Mother Teresa", difficulty: "Easy" },
+	{ text: "Don't judge each day by the harvest you reap", author: "Robert Louis Stevenson", difficulty: "Easy" },
 	{
-		text: "It is a truth universally acknowledged that a single man in possession of a good fortune must be in want of a wife",
-		author: "Jane Austen, Pride and Prejudice",
+		text: "The future belongs to those who believe in the beauty of their dreams",
+		author: "Eleanor Roosevelt",
+		difficulty: "Easy",
 	},
 	{
-		text: "All happy families are alike each unhappy family is unhappy in its own way",
-		author: "Leo Tolstoy, Anna Karenina",
+		text: "Tell me and I forget Teach me and I remember Involve me and I learn",
+		author: "Benjamin Franklin",
+		difficulty: "Easy",
+	},
+	{ text: "In the end it's not the years in your life that count", author: "Abraham Lincoln", difficulty: "Easy" },
+	{
+		text: "Never let the fear of striking out keep you from playing the game",
+		author: "Babe Ruth",
+		difficulty: "Easy",
 	},
 	{
-		text: "Whether I shall turn out to be the hero of my own life or whether that station will be held by anybody else these pages must show",
-		author: "Charles Dickens, David Copperfield",
-	},
-	{ text: "The only way to do great work is to love what you do", author: "Common wisdom" },
-	{ text: "I think therefore I am", author: "René Descartes" },
-	{
-		text: "We hold these truths to be self evident that all men are created equal",
-		author: "Declaration of Independence",
+		text: "Money and success don't change people they merely amplify what is already there",
+		author: "Will Smith",
+		difficulty: "Easy",
 	},
 	{
-		text: "Four score and seven years ago our fathers brought forth on this continent a new nation",
-		author: "Abraham Lincoln, Gettysburg Address",
+		text: "Your time is limited so don't waste it living someone else's life",
+		author: "Steve Jobs",
+		difficulty: "Easy",
+	},
+	{ text: "Well done is better than well said", author: "Benjamin Franklin", difficulty: "Easy" },
+	{ text: "The only impossible journey is the one you never begin", author: "Tony Robbins", difficulty: "Easy" },
+	{ text: "You only live once but if you do it right once is enough", author: "Mae West", difficulty: "Easy" },
+	{
+		text: "Always remember that you are absolutely unique Just like everyone else",
+		author: "Margaret Mead",
+		difficulty: "Easy",
 	},
 	{
-		text: "Ask not what your country can do for you ask what you can do for your country",
-		author: "John F. Kennedy",
+		text: "The greatest glory in living lies not in never falling but in rising every time we fall",
+		author: "Nelson Mandela",
+		difficulty: "Medium",
 	},
-	{ text: "The course of true love never did run smooth", author: "William Shakespeare, A Midsummer Night's Dream" },
 	{
-		text: "All the world is a stage and all the men and women merely players",
-		author: "William Shakespeare, As You Like It",
+		text: "Many of life's failures are people who did not realize how close they were to success",
+		author: "Thomas Edison",
+		difficulty: "Medium",
 	},
-	{ text: "To thine own self be true", author: "William Shakespeare, Hamlet" },
+	{
+		text: "If you look at what you have in life you'll always have more",
+		author: "Oprah Winfrey",
+		difficulty: "Medium",
+	},
+	{
+		text: "If you set your goals ridiculously high and it's a failure you will fail above everyone else's success",
+		author: "James Cameron",
+		difficulty: "Medium",
+	},
+	{ text: "Life is really simple but we insist on making it complicated", author: "Confucius", difficulty: "Medium" },
+	{
+		text: "It is during our darkest moments that we must focus to see the light",
+		author: "Aristotle",
+		difficulty: "Medium",
+	},
+	{
+		text: "Do not go where the path may lead go instead where there is no path and leave a trail",
+		author: "Ralph Waldo Emerson",
+		difficulty: "Medium",
+	},
+	{
+		text: "Keep smiling because life is a beautiful thing and there's so much to smile about",
+		author: "Marilyn Monroe",
+		difficulty: "Medium",
+	},
+	{
+		text: "Success is walking from failure to failure with no loss of enthusiasm",
+		author: "Winston Churchill",
+		difficulty: "Medium",
+	},
+	{
+		text: "I have learned that people will forget what you said but people will never forget how you made them feel",
+		author: "Maya Angelou",
+		difficulty: "Medium",
+	},
+	{
+		text: "Darkness cannot drive out darkness only light can do that Hate cannot drive out hate only love can do that",
+		author: "Martin Luther King Jr.",
+		difficulty: "Medium",
+	},
+	{
+		text: "Yesterday is history tomorrow is a mystery today is a gift of God which is why we call it the present",
+		author: "Bill Keane",
+		difficulty: "Medium",
+	},
+	{ text: "I would rather die of passion than of boredom", author: "Vincent van Gogh", difficulty: "Medium" },
+	{ text: "Dream as if you'll live forever live as if you'll die today", author: "James Dean", difficulty: "Medium" },
+	{ text: "It is not the mountain we conquer but ourselves", author: "Edmund Hillary", difficulty: "Medium" },
+	{
+		text: "The man who does not read has no advantage over the man who cannot read",
+		author: "Mark Twain",
+		difficulty: "Hard",
+	},
+	{
+		text: "Imagination is more important than knowledge Knowledge is limited Imagination encircles the world",
+		author: "Albert Einstein",
+		difficulty: "Hard",
+	},
+	{ text: "The unexamined life is not worth living", author: "Socrates", difficulty: "Hard" },
+	{
+		text: "Logic will get you from A to B imagination will take you everywhere",
+		author: "Albert Einstein",
+		difficulty: "Hard",
+	},
+	{ text: "I have no special talent I am only passionately curious", author: "Albert Einstein", difficulty: "Hard" },
+	{
+		text: "A person who never made a mistake never tried anything new",
+		author: "Albert Einstein",
+		difficulty: "Hard",
+	},
+	{
+		text: "Life is like riding a bicycle To keep your balance you must keep moving",
+		author: "Albert Einstein",
+		difficulty: "Hard",
+	},
+	{
+		text: "Great spirits have always encountered violent opposition from mediocre minds",
+		author: "Albert Einstein",
+		difficulty: "Hard",
+	},
+	{
+		text: "Everything is scenery for the person who is not afraid of being alone",
+		author: "Osamu Dazai",
+		difficulty: "Hard",
+	},
+	{
+		text: "All our dreams can come true if we have the courage to pursue them",
+		author: "Walt Disney",
+		difficulty: "Hard",
+	},
+	{ text: "It always seems impossible until it's done", author: "Nelson Mandela", difficulty: "Hard" },
+	{
+		text: "Success usually comes to those who are too busy to be looking for it",
+		author: "Henry David Thoreau",
+		difficulty: "Hard",
+	},
+	{
+		text: "If you are not willing to risk the usual you will have to settle for the ordinary",
+		author: "Jim Rohn",
+		difficulty: "Hard",
+	},
+	{
+		text: "The ones who are crazy enough to think they can change the world are the ones who do",
+		author: "Steve Jobs",
+		difficulty: "Hard",
+	},
+	{ text: "Do one thing every day that scares you", author: "Eleanor Roosevelt", difficulty: "Hard" },
+	{
+		text: "Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do",
+		author: "Mark Twain",
+		difficulty: "Expert",
+	},
+	{
+		text: "The suspicious mind believes that the world is a conspiracy and that everyone is out to get them",
+		author: "Anonymous",
+		difficulty: "Expert",
+	},
+	{
+		text: "To live is the rarest thing in the world Most people exist that is all",
+		author: "Oscar Wilde",
+		difficulty: "Expert",
+	},
+	{
+		text: "Science without religion is lame religion without science is blind",
+		author: "Albert Einstein",
+		difficulty: "Expert",
+	},
+	{
+		text: "Happiness is when what you think what you say and what you do are in harmony",
+		author: "Mahatma Gandhi",
+		difficulty: "Expert",
+	},
 ];
+
+// export const quotes: QUOTE[] = [
+// 	{ text: "The", author: "Common", difficulty: "Easy" },
+// 	{ text: "Quick", author: "Rare Letters", difficulty: "Hard" },
+// 	{ text: "Brown", author: "Standard", difficulty: "Medium" },
+// 	{ text: "Fox", author: "Rare Letters", difficulty: "Medium" },
+// 	{ text: "Jumps", author: "Rare Letters", difficulty: "Hard" },
+// 	{ text: "Lazy", author: "Rare Letters", difficulty: "Hard" },
+// 	{ text: "Dog", author: "Standard", difficulty: "Easy" },
+// 	{ text: "Apple", author: "Double Letter", difficulty: "Medium" },
+// 	{ text: "Moon", author: "Double Letter", difficulty: "Easy" },
+// 	{ text: "Jazz", author: "Extreme Rare", difficulty: "Expert" },
+// 	{ text: "Buzz", author: "Extreme Rare", difficulty: "Expert" },
+// 	{ text: "Vivid", author: "Patterned", difficulty: "Hard" },
+// 	{ text: "Queue", author: "Vowel Heavy", difficulty: "Hard" },
+// 	{ text: "A", author: "Single", difficulty: "Easy" },
+// 	{ text: "I", author: "Single", difficulty: "Easy" },
+// 	{ text: "No", author: "Short", difficulty: "Easy" },
+// 	{ text: "Yes", author: "Short", difficulty: "Easy" },
+// 	{ text: "Zebra", author: "Rare Letters", difficulty: "Hard" },
+// 	{ text: "Echo", author: "Standard", difficulty: "Medium" },
+// 	{ text: "Lynx", author: "No Vowel Style", difficulty: "Expert" },
+// ];
 
 export const symbols = [
 	"★",

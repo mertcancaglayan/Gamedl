@@ -22,7 +22,7 @@ function Modal() {
                 <h2>DECODED!</h2>
                 <p>Congratulations! You've successfully cracked the cipher.</p>
                 <div className="hint-text" id="quoteAttribution">"{currentQuote?.text}" — {currentQuote?.author}</div>
-                <button className="code-cracker-btn" onClick={newPuzzle}><span>New Puzzle</span></button>
+                <button className="modal-btn" onClick={newPuzzle}><span>New Puzzle</span></button>
             </div>
         </div>
     )

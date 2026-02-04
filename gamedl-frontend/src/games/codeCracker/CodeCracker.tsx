@@ -15,11 +15,9 @@ function CodeCracker() {
         setEntries,
         setIsGameEnd,
         numberOfGuess,
-        isGameEnd,
         currentQuoteLetters,
         setRefresh,
-        currentQuote,
-        isModalOpen,
+        isModalOpen
     } = useCipherContext()
 
     useEffect(() => {
