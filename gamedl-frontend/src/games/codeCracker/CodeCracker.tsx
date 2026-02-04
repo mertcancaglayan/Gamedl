@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-
 import "./CodeCracker.css";
 import Header from "./components/header/Header";
 import GameInfo from "./components/gameInfo/GameInfo";
 import { useCipherContext } from "./hooks/useCipherContext";
 import MappingGrid from "./components/mappingGrid/MappingGrid";
+import Modal from "./components/modal/Modal";
 
 
 function CodeCracker() {
@@ -18,7 +18,8 @@ function CodeCracker() {
         isGameEnd,
         currentQuoteLetters,
         setRefresh,
-        currentQuote
+        currentQuote,
+        isModalOpen,
     } = useCipherContext()
 
     useEffect(() => {
@@ -40,6 +41,7 @@ function CodeCracker() {
         setRefresh(true);
     }
 
+
     return (
         <section className="code-cracker">
             <div className="code-cracker-container">
@@ -60,11 +62,8 @@ function CodeCracker() {
                 <div className="controls">
                     <button className="code-cracker-btn" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
                 </div>
+                {isModalOpen && <Modal></Modal>}
 
-                {isGameEnd && <div><p>GameEnded</p>
-                    <p>sentence:  {currentQuote?.text}</p>
-                    <p>author : {currentQuote?.author}</p>
-                </div>}
             </div>
         </section>
     );
