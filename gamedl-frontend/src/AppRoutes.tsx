@@ -11,13 +11,16 @@ export const appRoutes = [
     }, {
         path: "/codecracker",
         element:
-            <CipherProvider>
-                <CodeCracker></CodeCracker>
-            </CipherProvider>,
+            <main>
+                <CipherProvider>
+                    <CodeCracker></CodeCracker>
+                </CipherProvider>
+            </main>
+        ,
         name: "Quiz Page"
     }, {
         path: "/wordcontextgame",
-        element: < WordContextGame />,
+        element: <main>< WordContextGame /></main>,
         name: "Result Page"
     }
 ]

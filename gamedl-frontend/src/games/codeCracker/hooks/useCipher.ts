@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { quotes, symbols, type QUOTE } from "../../../data/quotes";
-
-interface CurrentQuoteLetter {
-	letter: string;
-	symbol: string;
-}
+import type { CurrentQuoteLetter } from "../components/context/CipherContext";
 
 const shuffleSymbols = (): string[] => {
 	return [...symbols].sort(() => Math.random() - 0.5);
@@ -19,6 +15,7 @@ export const useCipher = () => {
 	const [mapping, setMapping] = useState<Record<string, string>>({});
 	const [refreshed, setRefresh] = useState<boolean>(false);
 	const [currentQuote, setCurrentQuote] = useState<QUOTE>();
+
 
 	useEffect(() => {
 		const quote = getRandomQuote();

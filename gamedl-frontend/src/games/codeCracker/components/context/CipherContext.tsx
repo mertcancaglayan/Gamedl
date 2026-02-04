@@ -1,4 +1,6 @@
 import { createContext, useState, } from "react";
+import { useCipher } from "../../hooks/useCipher";
+import type { QUOTE } from "../../../../data/quotes";
 
 export type GuessState = {
 	value: string;
@@ -10,7 +12,16 @@ export type Entry = {
 	symbol: string;
 };
 
+export type CurrentQuoteLetter = {
+	letter: string;
+	symbol: string;
+}
+
 interface CipherContextType {
+	currentQuoteLetters?: CurrentQuoteLetter[];
+	mapping: Record<string, string>;
+	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+	currentQuote?: QUOTE;
 	guesses: Record<string, GuessState>;
 	setGuesses: React.Dispatch<React.SetStateAction<Record<string, GuessState>>>;
 	entries: Entry[];
@@ -24,12 +35,14 @@ interface CipherContextType {
 const CipherContext = createContext<CipherContextType | undefined>(undefined);
 
 export function CipherProvider({ children }: { children: React.ReactNode }) {
+	const cipher = useCipher();
+
 	const [guesses, setGuesses] = useState<Record<string, GuessState>>({});
 	const [entries, setEntries] = useState<Entry[]>([]);
 	const [isGameEnd, setIsGameEnd] = useState<boolean>(false);
 	const [numberOfGuess, setNumberOfGuess] = useState<number>(0);
 
-	const contextValue = { guesses, setGuesses, entries, setEntries, isGameEnd, setIsGameEnd, numberOfGuess, setNumberOfGuess };
+	const contextValue = { ...cipher, guesses, setGuesses, entries, setEntries, isGameEnd, setIsGameEnd, numberOfGuess, setNumberOfGuess };
 
 	return (
 		<CipherContext.Provider value={contextValue}>

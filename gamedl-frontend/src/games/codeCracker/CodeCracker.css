@@ -176,7 +176,29 @@ section.code-cracker {
 .controls {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+    justify-content: center;
+}
+
+.code-cracker-btn {
+    background: transparent;
+    color: var(--accent-amber);
+    border: 1px solid var(--accent-amber);
+    padding: 0.8rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-cracker-btn:hover {
+    background: rgba(255, 149, 0, 0.1);
+    box-shadow: 0 0 15px var(--glow-amber);
+    transform: translateY(-2px);
 }
 
 @keyframes shake {

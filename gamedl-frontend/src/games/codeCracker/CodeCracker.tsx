@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCipher } from "./hooks/useCipher";
+
 import "./CodeCracker.css";
 import Header from "./components/header/Header";
 import GameInfo from "./components/gameInfo/GameInfo";
@@ -8,8 +8,18 @@ import MappingGrid from "./components/mappingGrid/MappingGrid";
 
 
 function CodeCracker() {
-    const { entries, guesses, setGuesses, setEntries, setIsGameEnd, numberOfGuess, isGameEnd } = useCipherContext()
-    const { currentQuoteLetters, setRefresh, currentQuote } = useCipher();
+    const {
+        entries,
+        guesses,
+        setGuesses,
+        setEntries,
+        setIsGameEnd,
+        numberOfGuess,
+        isGameEnd,
+        currentQuoteLetters,
+        setRefresh,
+        currentQuote
+    } = useCipherContext()
 
     useEffect(() => {
         if (entries.length === 0) return;
@@ -48,15 +58,14 @@ function CodeCracker() {
                 </div>
                 <MappingGrid></MappingGrid>
                 <div className="controls">
-                    <button className="btn-secondary" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
+                    <button className="code-cracker-btn" onClick={() => newPuzzle()}><span>New Puzzle</span></button>
                 </div>
 
                 {isGameEnd && <div><p>GameEnded</p>
                     <p>sentence:  {currentQuote?.text}</p>
-                    <p>autoger : {currentQuote?.author}</p>
+                    <p>author : {currentQuote?.author}</p>
                 </div>}
             </div>
-
         </section>
     );
 }

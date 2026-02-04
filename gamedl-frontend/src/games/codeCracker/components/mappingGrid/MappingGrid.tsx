@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-import { useCipher } from "../../hooks/useCipher";
 import { useCipherContext } from "../../hooks/useCipherContext";
 import type { Entry } from "../context/CipherContext";
 
 function MappingGrid() {
-    const { entries, guesses, setGuesses, setEntries, isGameEnd, setNumberOfGuess } = useCipherContext()
-    const { mapping, } = useCipher();
-
+    const { entries, guesses, setGuesses, setEntries, isGameEnd, setNumberOfGuess, mapping } = useCipherContext()
 
     const shuffleEntries = (entries: Entry[]) => {
         return [...entries].sort(() => Math.random() - 0.5);
@@ -24,6 +21,15 @@ function MappingGrid() {
 
     function handleSubmit(value: string, letter: string) {
         if (isGameEnd) return
+
+        if (!value) {
+            setGuesses((prev) => {
+                const newGuesses = { ...prev }
+                delete newGuesses[letter]
+                return newGuesses
+            })
+            return
+        }
 
         const upperCaseValue = value.toUpperCase()
         const isCorrect: boolean = upperCaseValue === letter
@@ -67,8 +73,10 @@ function MappingGrid() {
                                 value={guesses[letter]?.value || ""}
                                 onChange={((e) => {
                                     const input = e.target as HTMLInputElement;
+
+                                    const value = input.value
                                     handleSubmit(
-                                        input.value,
+                                        value,
                                         input.dataset.letter!
                                     );
                                 })}
