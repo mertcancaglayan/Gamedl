@@ -53,6 +53,10 @@
 	width: 100%;
 }
 
+.context-game-section .game-wrapper {
+	max-width: 800px;
+}
+
 .context-game-section .title-area {
 	display: flex;
 	flex-direction: column;
