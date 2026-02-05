@@ -7,7 +7,7 @@ interface gameInfoProps {
 
 function GameInfo({ totalLetter, numberOfGuess }: gameInfoProps) {
     return (
-        <div className="game-info">
+        <div className="cipher-game-info">
             <div className="info-card">
                 <div className="info-label">Number Of Guesses</div>
                 <div className="info-value" id="guesses">{numberOfGuess}</div>

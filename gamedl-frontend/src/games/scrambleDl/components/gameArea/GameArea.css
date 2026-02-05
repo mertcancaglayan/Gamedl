@@ -1,8 +1,8 @@
-.game-area {
+.scramble-game-section .game-area {
 	margin-bottom: 32px;
 }
 
-.scrambled-word {
+.scramble-game-section .scrambled-word {
 	background: #f7f5f2;
 	border: 2px solid #e0ddd7;
 	border-radius: 12px;
@@ -15,14 +15,14 @@
 	justify-content: center;
 }
 
-.letters {
+.scramble-game-section .letters {
 	display: flex;
 	gap: 8px;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 
-.letter {
+.scramble-game-section .letter {
 	background: white;
 	width: 56px;
 	height: 56px;
@@ -37,11 +37,11 @@
 	text-transform: uppercase;
 }
 
-.input-area {
+.scramble-game-section .input-area {
 	margin-bottom: 20px;
 }
 
-#scramble-dl-input {
+.scramble-game-section #scramble-dl-input {
 	width: 100%;
 	padding: 16px 20px;
 	font-size: 18px;
@@ -55,9 +55,8 @@
 	letter-spacing: 2px;
 }
 
-.scramble-control-buttons {
+.scramble-game-section .scramble-control-buttons {
 		display: flex;
 		gap: 12px;
 		margin-bottom: 24px;
 }
-

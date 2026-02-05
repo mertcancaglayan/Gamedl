@@ -1,4 +1,4 @@
-.game-over {
+.scramble-game-section .game-over {
 	text-align: center;
 	padding: 32px;
 	background: #f7f5f2;
@@ -6,39 +6,39 @@
 	display: block;
 }
 
-.game-over h2 {
+.scramble-game-section .game-over h2 {
 	font-size: 24px;
 	margin-bottom: 12px;
 	color: #2d2d2d;
 }
 
-.game-over p {
+.scramble-game-section .game-over p {
 	color: #6b6b6b;
 	margin-bottom: 24px;
 	font-size: 15px;
 }
 
-.final-stats {
+.scramble-game-section .final-stats {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
 	margin-bottom: 24px;
 }
 
-.final-stat {
+.scramble-game-section .final-stat {
 	background: white;
 	padding: 16px;
 	border-radius: 8px;
 }
 
-.final-stat-value {
+.scramble-game-section .final-stat-value {
 	font-size: 24px;
 	font-weight: 500;
 	color: #2d2d2d;
 	margin-bottom: 4px;
 }
 
-.final-stat-label {
+.scramble-game-section .final-stat-label {
 	font-size: 13px;
 	color: #6b6b6b;
 }
