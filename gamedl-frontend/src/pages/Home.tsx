@@ -1,10 +1,19 @@
-import WordContextGame from "../games/wordContextGame/WordContextGame"
+import { useNavigate } from "react-router"
+import { Fragment } from "react/jsx-runtime"
 
 function Home() {
+    const navigate = useNavigate()
+
+
     return (
-        <main>
-            <WordContextGame></WordContextGame>
-        </main>
+        <Fragment>
+            <button onClick={() => navigate("/codecracker")}>
+                Start CodeCracker
+            </button>
+            <button onClick={() => navigate("/wordcontextgame")}>
+                Start Word Context
+            </button>
+        </Fragment>
     )
 }
 

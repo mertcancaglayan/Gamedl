@@ -24,10 +24,6 @@ export function useContextGame() {
 		}
 	}
 
-	useEffect(() => {
-		console.log(word);
-	}, [word]);
-
 	function displayHint() {
 		if (isHintVisible) return;
 		setIsHintVisible(true);
