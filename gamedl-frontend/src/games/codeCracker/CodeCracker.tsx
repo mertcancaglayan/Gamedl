@@ -17,7 +17,8 @@ function CodeCracker() {
         numberOfGuess,
         currentQuoteLetters,
         setRefresh,
-        isModalOpen
+        isModalOpen,
+        currentQuote,
     } = useCipherContext()
 
     useEffect(() => {
@@ -39,12 +40,11 @@ function CodeCracker() {
         setRefresh(true);
     }
 
-
     return (
         <section className="code-cracker">
             <div className="game-wrapper">
                 <Header></Header>
-                <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess}></GameInfo>
+                <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess} author={currentQuote?.author}></GameInfo>
                 <div className="cipher-display">
                     <div className="cipher-text">
                         {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
