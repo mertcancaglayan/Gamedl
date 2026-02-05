@@ -34,10 +34,7 @@ function MappingGrid() {
         const upperCaseValue = value.toUpperCase()
         const isCorrect: boolean = upperCaseValue === letter
 
-        console.log(letter, value)
-
         setNumberOfGuess((prev) => prev + 1)
-
 
         setGuesses((prev) => ({
             ...prev,
