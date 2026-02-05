@@ -1,4 +1,4 @@
-@keyframes fadeIn {
+@keyframes codeCrackerFadeIn {
 	from {
 		opacity: 0;
 		transform: translateY(10px);
@@ -34,7 +34,7 @@ section.code-cracker {
 	align-items: flex-start;
 }
 
-.cipher-display {
+.code-cracker .cipher-display {
 	background: var(--paper);
 	color: #2c2c2e;
 	padding: 2rem;
@@ -43,11 +43,11 @@ section.code-cracker {
 		0 10px 40px rgba(0, 0, 0, 0.5),
 		inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	position: relative;
-	animation: fadeIn 1s ease-out 0.5s both;
+	animation: codeCrackerFadeIn 1s ease-out 0.5s both;
 	width: 100%;
 }
 
-.cipher-text {
+.code-cracker .cipher-text {
 	font-size: 2rem;
 	line-height: 1.8;
 	font-weight: bold;
@@ -58,19 +58,19 @@ section.code-cracker {
 	word-break: break-word;
 }
 
-.cipher-symbol {
+.code-cracker .cipher-symbol {
 	display: inline-block;
 	color: #1d1d1f;
 	transition: all 0.3s ease;
 	padding: 0 2px;
 }
 
-.cipher-symbol.correct-letter {
+.code-cracker .cipher-symbol.correct-letter {
 	color: var(--accent-green);
-	animation: pop 0.4s ease-out;
+	animation: codeCrackerPop 0.4s ease-out;
 }
 
-@keyframes pop {
+@keyframes codeCrackerPop {
 	0% {
 		transform: scale(1);
 	}
@@ -82,15 +82,15 @@ section.code-cracker {
 	}
 }
 
-.mapping-grid {
+.code-cracker .mapping-grid {
 	background: rgba(26, 31, 46, 0.9);
 	padding: 2rem;
 	border-radius: 8px;
 	border: 2px solid rgba(255, 149, 0, 0.3);
-	animation: fadeIn 1s ease-out 0.7s both;
+	animation: codeCrackerFadeIn 1s ease-out 0.7s both;
 }
 
-.grid-title {
+.code-cracker .grid-title {
 	font-size: 0.9rem;
 	color: var(--accent-amber);
 	text-transform: uppercase;
@@ -99,14 +99,14 @@ section.code-cracker {
 	text-align: center;
 }
 
-.letter-grid {
+.code-cracker .letter-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
 	gap: 1rem;
 	width: 100%;
 }
 
-.letter-mapping {
+.code-cracker .letter-mapping {
 	background: rgba(10, 14, 20, 0.6);
 	border: 1px solid rgba(255, 149, 0, 0.4);
 	border-radius: 6px;
@@ -119,32 +119,32 @@ section.code-cracker {
 	gap: 0.5rem;
 }
 
-.letter-mapping:hover {
+.code-cracker .letter-mapping:hover {
 	background: rgba(255, 149, 0, 0.1);
 	border-color: var(--accent-amber);
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
 }
 
-.letter-mapping.correct {
+.code-cracker .letter-mapping.correct {
 	border-color: var(--accent-green);
 	background: rgba(48, 209, 88, 0.1);
 }
 
-.letter-mapping.incorrect {
+.code-cracker .letter-mapping.incorrect {
 	border-color: var(--accent-red);
 	background: rgba(255, 59, 48, 0.1);
-	animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	animation: codeCrackerShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-.symbol {
+.code-cracker .symbol {
 	font-size: 1.8rem;
 	color: var(--accent-amber);
 	font-weight: bold;
 	display: block;
 }
 
-.letter-input {
+.code-cracker .letter-input {
 	width: 100%;
 	background: rgba(244, 241, 232, 0.1);
 	border: 1px solid rgba(255, 149, 0, 0.3);
@@ -158,42 +158,42 @@ section.code-cracker {
 	transition: all 0.3s ease;
 }
 
-.letter-input:focus {
+.code-cracker .letter-input:focus {
 	outline: none;
 	border-color: var(--accent-amber);
 	background: rgba(244, 241, 232, 0.15);
 	box-shadow: 0 0 10px var(--glow-amber);
 }
 
-.controls {
+.code-cracker .controls {
 	width: 100%;
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
 
-.code-cracker-btn {
-    background: transparent;
-    color: var(--accent-amber);
-    border: 1px solid var(--accent-amber);
-    padding: 0.8rem 2rem;
-    font-family: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
+.code-cracker .code-cracker-btn {
+	background: transparent;
+	color: var(--accent-amber);
+	border: 1px solid var(--accent-amber);
+	padding: 0.8rem 2rem;
+	font-family: inherit;
+	font-size: 1rem;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	transition: all 0.3s ease;
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
 }
 
-.code-cracker-btn:hover {
-    background: rgba(255, 149, 0, 0.1);
-    box-shadow: 0 0 15px var(--glow-amber);
-    transform: translateY(-2px);
+.code-cracker .code-cracker-btn:hover {
+	background: rgba(255, 149, 0, 0.1);
+	box-shadow: 0 0 15px var(--glow-amber);
+	transform: translateY(-2px);
 }
 
-@keyframes shake {
+@keyframes codeCrackerShake {
 	10%,
 	90% {
 		transform: translate3d(-1px, 0, 0);
@@ -218,55 +218,55 @@ section.code-cracker {
 		padding: 1rem;
 	}
 
-	.code-cracker-container {
+	.code-cracker .code-cracker-container {
 		gap: 1.5rem;
 	}
 
-	.cipher-display {
+	.code-cracker .cipher-display {
 		padding: 1.5rem;
 		margin-bottom: 0;
 	}
 
-	.cipher-text {
+	.code-cracker .cipher-text {
 		font-size: 1.5rem;
 		line-height: 1.6;
 	}
 
-	.mapping-grid {
+	.code-cracker .mapping-grid {
 		padding: 1rem;
 		margin-bottom: 0;
 	}
 
-	.letter-grid {
+	.code-cracker .letter-grid {
 		grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
 		gap: 0.75rem;
 	}
 
-	.letter-mapping {
+	.code-cracker .letter-mapping {
 		padding: 0.5rem;
 	}
 
-	.symbol {
+	.code-cracker .symbol {
 		font-size: 1.5rem;
 	}
 
-	.letter-input {
+	.code-cracker .letter-input {
 		font-size: 1rem;
 		padding: 0.4rem;
 	}
 }
 
 @media (max-width: 480px) {
-	.cipher-text {
+	.code-cracker .cipher-text {
 		font-size: 1.25rem;
 	}
 
-	.letter-grid {
+	.code-cracker .letter-grid {
 		grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 		gap: 0.5rem;
 	}
 
-	.symbol {
+	.code-cracker .symbol {
 		font-size: 1.25rem;
 	}
 }

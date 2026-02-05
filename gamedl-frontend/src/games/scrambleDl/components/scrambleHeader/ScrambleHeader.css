@@ -1,0 +1,16 @@
+.scramble-header h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: #2d2d2d;
+    margin-bottom: 8px;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.scramble-header .scramble-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 400;
+}
