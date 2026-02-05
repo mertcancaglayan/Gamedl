@@ -42,7 +42,7 @@ function CodeCracker() {
 
     return (
         <section className="code-cracker">
-            <div className="code-cracker-container">
+            <div className="game-wrapper">
                 <Header></Header>
                 <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess}></GameInfo>
                 <div className="cipher-display">

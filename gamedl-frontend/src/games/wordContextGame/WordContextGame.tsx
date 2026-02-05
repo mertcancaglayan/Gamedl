@@ -14,7 +14,6 @@ function WordContextGame() {
         currentContexIndex,
         isHintVisible,
         guess,
-        guesses,
         isGameOver,
         isGameWon,
         revealNext,
@@ -29,42 +28,44 @@ function WordContextGame() {
 
     return (
         <section className="context-game-section">
-            <GameTitle />
-            <GameScore />
-            <div className="game-area">
-                <div className="context-progress"><p>Contexts revealed: {`${currentContexIndex + 1} / ${word?.contexts.length}`}</p></div>
-                <div className="context-list">
-                    {word.contexts.map((context, i) => (
-                        <WordContextListItem
-                            key={i}
-                            text={context}
-                            index={i}
-                            isVisible={i <= currentContexIndex}
-                        />
-                    ))}
-                </div>
-                <GameHint isHintVisible={isHintVisible} word={word} />
-                <GameActions revealNext={revealNext} displayHint={displayHint} />
+            <div className="game-wrapper">
+                <GameTitle />
+                <GameScore />
+                <div className="game-area">
+                    <div className="context-progress"><p>Contexts revealed: {`${currentContexIndex + 1} / ${word?.contexts.length}`}</p></div>
+                    <div className="context-list">
+                        {word.contexts.map((context, i) => (
+                            <WordContextListItem
+                                key={i}
+                                text={context}
+                                index={i}
+                                isVisible={i <= currentContexIndex}
+                            />
+                        ))}
+                    </div>
+                    <GameHint isHintVisible={isHintVisible} word={word} />
+                    <GameActions revealNext={revealNext} displayHint={displayHint} />
 
-                {(
-                    <GameStatus word={word} handleRetry={handleRetry} isGameWon={isGameWon} isGameOver={isGameOver}>
-                        <div className="guess-area">
-                            <label htmlFor="guess-input">Your guess</label>
-                            <div className="guess-area-actions">
-                                <input
-                                    id="guess-input"
-                                    type="text"
-                                    value={guess}
-                                    onChange={(e) => setGuess(e.target.value)}
-                                    onKeyDown={(e) => e.key === "Enter" && handleGuess()}
-                                />
-                                <button className="btn btn-primary" onClick={handleGuess}>Submit</button>
+                    {(
+                        <GameStatus word={word} handleRetry={handleRetry} isGameWon={isGameWon} isGameOver={isGameOver}>
+                            <div className="guess-area">
+                                <label htmlFor="guess-input">Your guess</label>
+                                <div className="guess-area-actions">
+                                    <input
+                                        id="guess-input"
+                                        type="text"
+                                        value={guess}
+                                        onChange={(e) => setGuess(e.target.value)}
+                                        onKeyDown={(e) => e.key === "Enter" && handleGuess()}
+                                    />
+                                    <button className="btn btn-primary" onClick={handleGuess}>Submit</button>
+                                </div>
                             </div>
-                        </div>
-                    </GameStatus>
-                )}
+                        </GameStatus>
+                    )}
+                </div>
+                <Instructions />
             </div>
-            <Instructions />
         </section>
     )
 }
