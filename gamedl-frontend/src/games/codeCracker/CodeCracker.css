@@ -34,14 +34,6 @@ section.code-cracker {
 	align-items: flex-start;
 }
 
-.code-cracker-container {
-	max-width: 1200px;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
 .cipher-display {
 	background: var(--paper);
 	color: #2c2c2e;
