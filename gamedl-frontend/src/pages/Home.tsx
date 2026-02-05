@@ -13,7 +13,11 @@ function Home() {
             <button onClick={() => navigate("/wordcontextgame")}>
                 Start Word Context
             </button>
+            <button onClick={() => navigate("/scramble-dl")}>
+                Start Scramble-Dl
+            </button>
         </Fragment>
+
     )
 }
 

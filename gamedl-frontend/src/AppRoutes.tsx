@@ -2,6 +2,9 @@ import CodeCracker from "./games/codeCracker/CodeCracker";
 import WordContextGame from "./games/wordContextGame/WordContextGame";
 import { CipherProvider } from "./games/codeCracker/components/context/CipherContext";
 import Home from "./pages/Home";
+import ScrambleDl from "./games/scrambleDl/ScrambleDl";
+import { ScrambleProvider } from "./games/scrambleDl/context/ScrambleContext";
+import { TimerProvider } from "./games/scrambleDl/context/TimerContext";
 
 export const appRoutes = [
     {
@@ -17,11 +20,22 @@ export const appRoutes = [
                 </CipherProvider>
             </main>
         ,
-        name: "Quiz Page"
+        name: "Code Cracker Game"
     }, {
         path: "/wordcontextgame",
         element: <main>< WordContextGame /></main>,
-        name: "Result Page"
+        name: "Word Context Game"
+    }, {
+        path: "/scramble-dl",
+        element:
+            <main>
+                <TimerProvider>
+                    <ScrambleProvider>
+                        <ScrambleDl></ScrambleDl>
+                    </ScrambleProvider>
+                </TimerProvider>
+            </main>,
+        name: "Scramble-dl Game"
     }
 ]
 

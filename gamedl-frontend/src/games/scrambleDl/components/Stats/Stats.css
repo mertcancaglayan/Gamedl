@@ -1,0 +1,28 @@
+.stats {
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+	margin-bottom: 32px;
+}
+
+.stat {
+	text-align: center;
+}
+.timer.warning {
+	color: #d9534f;
+	animation: pulse 1s infinite;
+}
+.timer {
+	color: #c87941;
+}
+.stat-value {
+	font-size: 28px;
+	font-weight: 500;
+	color: #2d2d2d;
+}
+
+.stat-label {
+	font-size: 13px;
+	color: #6b6b6b;
+	margin-top: 4px;
+}
