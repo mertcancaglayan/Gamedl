@@ -23,8 +23,6 @@ export function useContextGame() {
 	function revealNext() {
 		if (word && currentContexIndex < word.contexts.length - 1 && score >= 6) {
 			setScore((prev) => prev - 6);
-		console.log(score);
-
 			setCurrentContextIndex((prev) => prev + 1);
 		}
 	}

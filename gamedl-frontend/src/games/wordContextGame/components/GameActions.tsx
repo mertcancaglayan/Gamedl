@@ -7,7 +7,7 @@ interface GameActionProps {
 function GameActions({ revealNext, displayHint }: GameActionProps) {
     return (
         <div className="action-btns">
-            <button className="btn btn-secondary" onClick={revealNext}><Tally2 /> Reveal next context</button>
+            <button id="tally-btn" className="btn btn-secondary" onClick={revealNext}><Tally2 /> Reveal next context</button>
             <button className="btn btn-secondary" onClick={displayHint}><Lightbulb /> Show Hint</button>
         </div>
     )
