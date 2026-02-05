@@ -1,14 +1,16 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 import { getRandomWord, shuffleWord } from "../utils/scrambleWordUtils";
+import { useTimeContext } from "../hooks/useTimeContext";
 
 interface ScrambleContextInterface {
     currentWord: string;
     shuffledWord: string;
     gameOver: boolean;
-    time: number;
     startGame: () => void;
     nextWord: () => void;
     restartGame: () => void;
+    handleGuess: (guess: string) => boolean;
+    score: number;
 }
 
 const ScrambleContext = createContext<ScrambleContextInterface | undefined>(undefined);
@@ -16,10 +18,12 @@ const ScrambleContext = createContext<ScrambleContextInterface | undefined>(unde
 export function ScrambleProvider({ children }: { children: React.ReactNode }) {
     const [currentWord, setCurrentWord] = useState("");
     const [shuffledWord, setShuffledWord] = useState("");
-    const [time, setTime] = useState(0);
     const [gameOver, setGameOver] = useState(false);
+    const [score, setScore] = useState<number>(0);
 
-    const generateWord = () => {
+    const { start, time } = useTimeContext();
+
+    const generateWord = useCallback(() => {
         const word = getRandomWord();
 
         let shuffled = shuffleWord(word);
@@ -29,51 +33,54 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
 
         setCurrentWord(word);
         setShuffledWord(shuffled);
-    };
+    }, []);
 
-    const startGame = () => {
-        setTime(5);
+    const startGame = useCallback(() => {
+        start(15);
         setGameOver(false);
+        setScore(0);
         generateWord();
-    };
+    }, [start, generateWord]);
 
-    const nextWord = () => {
+    const nextWord = useCallback(() => {
         if (gameOver) return;
-
         generateWord();
-    };
+    }, [gameOver, generateWord]);
 
-    const restartGame = () => {
+    const restartGame = useCallback(() => {
         startGame();
-    };
+    }, [startGame]);
 
+    const handleGuess = useCallback((candidateGuess: string): boolean => {
+        if (gameOver || !candidateGuess.trim()) return false;
+
+        if (candidateGuess.toLowerCase() === currentWord.toLowerCase()) {
+            setScore((prev) => prev + 12);
+            nextWord();
+            return true;
+        } else if (candidateGuess.toLowerCase() !== currentWord.toLowerCase()) {
+            setScore((prev) => prev - 6)
+        }
+ 
+        return false;
+    }, [gameOver, currentWord, nextWord]);
 
     useEffect(() => {
-        if (gameOver) return;
-
         if (time === 0) {
             setGameOver(true);
-            return;
         }
+    }, [time]);
 
-        const timer = setTimeout(() => {
-            setTime(t => t - 1);
-        }, 1000);
-
-        return () => clearTimeout(timer);
-    }, [time, gameOver]);
-
-
-
-    const contextValue: ScrambleContextInterface = {
+    const contextValue: ScrambleContextInterface = useMemo(() => ({
         currentWord,
         shuffledWord,
-        time,
         gameOver,
         startGame,
         nextWord,
-        restartGame
-    };
+        restartGame,
+        handleGuess,
+        score
+    }), [currentWord, shuffledWord, gameOver, startGame, nextWord, restartGame, handleGuess, score]);
 
     return (
         <ScrambleContext.Provider value={contextValue} >
@@ -83,4 +90,3 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
 }
 
 export default ScrambleContext;
-

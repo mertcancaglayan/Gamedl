@@ -4,6 +4,7 @@ import { CipherProvider } from "./games/codeCracker/components/context/CipherCon
 import Home from "./pages/Home";
 import ScrambleDl from "./games/scrambleDl/ScrambleDl";
 import { ScrambleProvider } from "./games/scrambleDl/context/ScrambleContext";
+import { TimerProvider } from "./games/scrambleDl/context/TimerContext";
 
 export const appRoutes = [
     {
@@ -28,9 +29,11 @@ export const appRoutes = [
         path: "/scramble-dl",
         element:
             <main>
-                <ScrambleProvider>
-                    <ScrambleDl></ScrambleDl>
-                </ScrambleProvider>
+                <TimerProvider>
+                    <ScrambleProvider>
+                        <ScrambleDl></ScrambleDl>
+                    </ScrambleProvider>
+                </TimerProvider>
             </main>,
         name: "Scramble-dl Game"
     }

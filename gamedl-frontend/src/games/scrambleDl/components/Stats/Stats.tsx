@@ -1,20 +1,15 @@
-import "./Stats.css"
 import { useGame } from "../../hooks/useGame";
+import "./Stats.css"
+import TimeStat from "./timeStat/TimeStat";
 
 function Stats() {
-    const { gameOver, restartGame, time } = useGame();
+    const { score } = useGame();
 
     return (
         <div className="stats">
+            <TimeStat></TimeStat>
             <div className="stat">
-                <div className={`stat-value timer ${time <= 10 ? "warning" : ""}`}>
-                    {time}
-                </div>
-                <div className="stat-label">Seconds</div>
-            </div>
-
-            <div className="stat">
-                <div className="stat-value">12</div>
+                <div className="stat-value">{score}</div>
                 <div className="stat-label">Score</div>
             </div>
 
@@ -22,15 +17,6 @@ function Stats() {
                 <div className="stat-value">0</div>
                 <div className="stat-label">Streak</div>
             </div>
-
-            {gameOver && (
-                <div className="game-over">
-                    ⛔ Game Over
-                    <button onClick={restartGame}>
-                        Restart
-                    </button>
-                </div>
-            )}
         </div>
     );
 }
