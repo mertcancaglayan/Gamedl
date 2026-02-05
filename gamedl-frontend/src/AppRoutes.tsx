@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import ScrambleDl from "./games/scrambleDl/ScrambleDl";
 import { ScrambleProvider } from "./games/scrambleDl/context/ScrambleContext";
 import { TimerProvider } from "./games/scrambleDl/context/TimerContext";
+import { GameProvider } from "./games/wordContextGame/context/ContextGameContext";
 
 export const appRoutes = [
     {
@@ -23,7 +24,12 @@ export const appRoutes = [
         name: "Code Cracker Game"
     }, {
         path: "/wordcontextgame",
-        element: <main>< WordContextGame /></main>,
+        element: <main>
+            <GameProvider>
+                < WordContextGame />
+            </GameProvider>
+
+        </main>,
         name: "Word Context Game"
     }, {
         path: "/scramble-dl",

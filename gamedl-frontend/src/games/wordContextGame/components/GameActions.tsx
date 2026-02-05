@@ -1,7 +1,7 @@
 import { Lightbulb, Tally2 } from "lucide-react"
 
 interface GameActionProps {
-    revealNext: () => void; displayHint: () => void
+    revealNext: () => void; displayHint: () => void; 
 }
 
 function GameActions({ revealNext, displayHint }: GameActionProps) {

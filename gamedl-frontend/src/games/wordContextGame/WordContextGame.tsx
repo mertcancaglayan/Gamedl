@@ -3,10 +3,10 @@ import GameScore from "./components/GameScore";
 import WordContextListItem from "./components/WordContextListItem";
 import GameStatus from "./components/GameStatus";
 import Instructions from "./components/Instructions";
-import { useContextGame } from "./hook/useContextGame";
 import GameActions from "./components/GameActions";
 import GameTitle from "./components/GameTitle";
 import GameHint from "./components/GameHint";
+import { useGameContext } from "./hook/useGameContext";
 
 function WordContextGame() {
     const {
@@ -20,8 +20,8 @@ function WordContextGame() {
         displayHint,
         handleGuess,
         handleRetry,
-        setGuess
-    } = useContextGame()
+        setGuess,
+    } =  useGameContext()
 
     if (!word) return <>Error</>
 
@@ -44,7 +44,7 @@ function WordContextGame() {
                         ))}
                     </div>
                     <GameHint isHintVisible={isHintVisible} word={word} />
-                    <GameActions revealNext={revealNext} displayHint={displayHint} />
+                    <GameActions  revealNext={revealNext} displayHint={displayHint} />
 
                     {(
                         <GameStatus word={word} handleRetry={handleRetry} isGameWon={isGameWon} isGameOver={isGameOver}>
