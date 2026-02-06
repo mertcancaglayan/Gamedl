@@ -11,6 +11,8 @@ interface ScrambleContextInterface {
     restartGame: () => void;
     handleGuess: (guess: string) => boolean;
     score: number;
+    streak: number;
+    totalSolved: number;
 }
 
 const ScrambleContext = createContext<ScrambleContextInterface | undefined>(undefined);
@@ -20,6 +22,8 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
     const [shuffledWord, setShuffledWord] = useState("");
     const [gameOver, setGameOver] = useState(false);
     const [score, setScore] = useState<number>(0);
+    const [streak, setStreak] = useState<number>(0);
+    const [totalSolved, setTotalSolved] = useState<number>(0)
 
     const { start, time } = useTimeContext();
 
@@ -39,6 +43,8 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
         start(15);
         setGameOver(false);
         setScore(0);
+        setStreak(0)
+        setTotalSolved(0)
         generateWord();
     }, [start, generateWord]);
 
@@ -56,12 +62,16 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
 
         if (candidateGuess.toLowerCase() === currentWord.toLowerCase()) {
             setScore((prev) => prev + 12);
+            setStreak((prev) => prev + 1);
+            setTotalSolved((prev) => prev + 1);
+
             nextWord();
             return true;
         } else if (candidateGuess.toLowerCase() !== currentWord.toLowerCase()) {
-            setScore((prev) => prev - 6)
+            setScore((prev) => prev - 6);
+            setStreak(0);
         }
- 
+
         return false;
     }, [gameOver, currentWord, nextWord]);
 
@@ -79,8 +89,10 @@ export function ScrambleProvider({ children }: { children: React.ReactNode }) {
         nextWord,
         restartGame,
         handleGuess,
-        score
-    }), [currentWord, shuffledWord, gameOver, startGame, nextWord, restartGame, handleGuess, score]);
+        score,
+        streak,
+        totalSolved,
+    }), [currentWord, streak, shuffledWord, gameOver, startGame, nextWord, restartGame, handleGuess, score, totalSolved]);
 
     return (
         <ScrambleContext.Provider value={contextValue} >

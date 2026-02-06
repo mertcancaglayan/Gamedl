@@ -10,7 +10,7 @@ interface TimerContextType {
 const TimerContext = createContext<TimerContextType | null>(null)
 
 export const TimerProvider = ({ children }: { children: React.ReactNode }) => {
-    const [time, setTime] = useState<number>(15);
+    const [time, setTime] = useState<number>(45);
     const [isRunning, setIsRunning] = useState<boolean>(false)
 
     useEffect(() => {

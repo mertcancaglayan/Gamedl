@@ -3,7 +3,7 @@ import "./Stats.css"
 import TimeStat from "./timeStat/TimeStat";
 
 function Stats() {
-    const { score } = useGame();
+    const { score, streak } = useGame();
 
     return (
         <div className="stats">
@@ -14,7 +14,7 @@ function Stats() {
             </div>
 
             <div className="stat">
-                <div className="stat-value">0</div>
+                <div className="stat-value">{streak}</div>
                 <div className="stat-label">Streak</div>
             </div>
         </div>
