@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useCipherContext } from "../../hooks/useCipherContext";
 import type { Entry } from "../context/CipherContext";
+import { useCipher } from "../../hooks/useCipher";
 
 function MappingGrid() {
-    const { entries, guesses, setGuesses, setEntries, isGameEnd, setNumberOfGuess, mapping } = useCipherContext()
+    const { entries, guesses, setGuesses, setEntries, isGameEnd, setNumberOfGuess } = useCipherContext()
+    const {mapping} = useCipher()
 
     const shuffleEntries = (entries: Entry[]) => {
         return [...entries].sort(() => Math.random() - 0.5);

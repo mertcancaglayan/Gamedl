@@ -18,10 +18,6 @@ export type CurrentQuoteLetter = {
 }
 
 interface CipherContextType {
-	currentQuoteLetters?: CurrentQuoteLetter[];
-	mapping: Record<string, string>;
-	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
-	currentQuote?: QUOTE;
 	guesses: Record<string, GuessState>;
 	setGuesses: React.Dispatch<React.SetStateAction<Record<string, GuessState>>>;
 	entries: Entry[];
@@ -32,6 +28,10 @@ interface CipherContextType {
 	setNumberOfGuess: React.Dispatch<React.SetStateAction<number>>;
 	isModalOpen: boolean;
 	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	currentQuoteLetters: CurrentQuoteLetter[] | undefined;
+	mapping: Record<string, string>;
+	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+	currentQuote: QUOTE | undefined;
 }
 
 const CipherContext = createContext<CipherContextType | undefined>(undefined);
