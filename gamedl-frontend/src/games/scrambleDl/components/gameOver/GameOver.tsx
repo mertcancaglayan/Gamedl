@@ -2,7 +2,7 @@ import { useGame } from "../../hooks/useGame"
 import "./GameOver.css"
 
 function GameOver() {
-    const { restartGame, score } = useGame()
+    const { restartGame, score, totalSolved } = useGame()
 
     return (
         <div className="game-over show" id="gameOver">
@@ -15,7 +15,7 @@ function GameOver() {
                 </div>
 
                 <div className="final-stat">
-                    <div className="final-stat-value" id="wordsGuessed">1</div>
+                    <div className="final-stat-value" id="wordsGuessed">{totalSolved}</div>
                     <div className="final-stat-label">Words Solved</div>
                 </div>
 

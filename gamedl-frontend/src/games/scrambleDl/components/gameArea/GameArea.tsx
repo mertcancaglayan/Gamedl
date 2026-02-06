@@ -3,7 +3,7 @@ import { useGame } from "../../hooks/useGame"
 import "./GameArea.css"
 
 function GameArea() {
-    const { nextWord, shuffledWord, handleGuess, currentWord } = useGame()
+    const { nextWord, shuffledWord, handleGuess } = useGame()
     const [guess, setGuess] = useState("")
 
     function handleSubmit() {
@@ -12,8 +12,6 @@ function GameArea() {
             setGuess("");
         }
     }
-    console.log(currentWord);
-
 
     return (
         <div className="game-area" id="gameArea">
