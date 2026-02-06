@@ -1,8 +1,9 @@
+
 import { useCipherContext } from "../../hooks/useCipherContext"
 import "./Modal.css"
 
 function Modal() {
-    const { setIsModalOpen, setEntries, setGuesses, setRefresh, setIsGameEnd, currentQuote } = useCipherContext()
+    const { setIsModalOpen, setEntries, setGuesses, setIsGameEnd, setRefresh, currentQuote } = useCipherContext()
 
     function closeModal() {
         setIsModalOpen(false)
