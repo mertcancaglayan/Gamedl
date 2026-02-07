@@ -44,7 +44,8 @@ function CodeCracker() {
         <section className="code-cracker">
             <div className="game-wrapper">
                 <Header></Header>
-                <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess} author={currentQuote?.author}></GameInfo>
+                {currentQuote && <GameInfo totalLetter={entries.length} numberOfGuess={numberOfGuess} author={currentQuote.author}></GameInfo>}
+
                 <div className="cipher-display">
                     <div className="cipher-text">
                         {currentQuoteLetters && currentQuoteLetters.map((current, i) => {
